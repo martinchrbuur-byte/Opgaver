@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment files - NEVER commit secrets
+.env
+.env.local
+.env.*.local
+
+# Build output
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+.vscode/mcp.json
+
+# Test artifacts
+app/backend/test-supabase.mjs
+app/test-supabase.mjs

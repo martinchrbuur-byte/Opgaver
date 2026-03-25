@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChoreBoard – Children</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a class="logo" href="dashboard.html">ChoreBoard 🏠</a>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="children.html" class="active">Children</a>
+        <a href="chores.html">Chores</a>
+        <a href="#" id="logoutBtn">Logout</a>
+      </div>
+    </nav>
+
+    <div class="flex mb-2">
+      <h1>Children</h1>
+      <button class="btn btn-primary" id="showFormBtn">+ Add child</button>
+    </div>
+
+    <!-- Add child form -->
+    <div class="card mb-2 hidden" id="addCard">
+      <h2>New child profile</h2>
+      <form id="addForm">
+        <div class="form-group">
+          <label for="childName">Name</label>
+          <input type="text" id="childName" placeholder="e.g. Emma" required />
+        </div>
+        <div class="form-group">
+          <label for="ageRange">Age range</label>
+          <select id="ageRange">
+            <option value="">– select –</option>
+            <option value="5-7">5–7</option>
+            <option value="8-10">8–10</option>
+            <option value="11-13">11–13</option>
+            <option value="14+">14+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="pin">4-digit PIN <span class="text-muted">(optional, for child login)</span></label>
+          <input type="password" id="pin" maxlength="4" pattern="\d{4}" placeholder="••••" />
+        </div>
+        <div id="addError" class="error-msg hidden"></div>
+        <div class="flex mt-2">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-ghost" id="cancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Children list -->
+    <div class="card">
+      <div id="spinner" class="spinner"></div>
+      <table id="childTable" class="hidden">
+        <thead>
+          <tr><th>Name</th><th>Age range</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="childBody"></tbody>
+      </table>
+      <p id="noChildren" class="text-muted hidden">No children yet. Add one above!</p>
+    </div>
+  </div>
+
+  <script type="module" src="js/children.js"></script>
+</body>
+</html>

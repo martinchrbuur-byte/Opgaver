@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChoreBoard – Register</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="center">
+    <div class="form-box">
+      <h1 class="text-center mb-2">Create Account</h1>
+      <p class="text-center mb-2">Set up your family's ChoreBoard</p>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="parent@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password <span class="text-muted">(min 8 chars)</span></label>
+          <input type="password" id="password" placeholder="••••••••" minlength="8" required />
+        </div>
+        <div id="errorMsg" class="error-msg hidden"></div>
+        <button type="submit" class="btn btn-primary btn-full mt-2" id="submitBtn">Create account</button>
+      </form>
+
+      <p class="text-center mt-2 text-muted">
+        Already have an account? <a href="index.html">Sign in</a>
+      </p>
+    </div>
+  </div>
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

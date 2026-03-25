@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChoreBoard – Chores</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a class="logo" href="dashboard.html">ChoreBoard 🏠</a>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="children.html">Children</a>
+        <a href="chores.html" class="active">Chores</a>
+        <a href="#" id="logoutBtn">Logout</a>
+      </div>
+    </nav>
+
+    <div class="flex mb-2">
+      <h1>Chores</h1>
+      <button class="btn btn-primary" id="showFormBtn">+ Add chore</button>
+    </div>
+
+    <!-- Add chore form -->
+    <div class="card mb-2 hidden" id="addCard">
+      <h2>New chore</h2>
+      <form id="addForm">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" placeholder="e.g. Wash the dishes" required />
+        </div>
+        <div class="form-group">
+          <label for="reward">Reward ($)</label>
+          <input type="number" id="reward" min="0" max="1000" step="0.01" value="0" />
+        </div>
+        <div class="form-group">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="dueDate">Due date <span class="text-muted">(optional)</span></label>
+          <input type="date" id="dueDate" />
+        </div>
+        <div class="form-group">
+          <label>Assign to</label>
+          <div id="childCheckboxes"><span class="text-muted">Loading children…</span></div>
+        </div>
+        <div id="addError" class="error-msg hidden"></div>
+        <div class="flex mt-2">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-ghost" id="cancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Chores list -->
+    <div class="card">
+      <div id="spinner" class="spinner"></div>
+      <table id="choreTable" class="hidden">
+        <thead>
+          <tr><th>Chore</th><th>Reward</th><th>Difficulty</th><th>Status</th><th>Due</th></tr>
+        </thead>
+        <tbody id="choreBody"></tbody>
+      </table>
+      <p id="noChores" class="text-muted hidden">No chores yet. Add one above!</p>
+    </div>
+  </div>
+
+  <script type="module" src="js/chores.js"></script>
+</body>
+</html>

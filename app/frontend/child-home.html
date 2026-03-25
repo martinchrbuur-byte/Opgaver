@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChoreBoard – My Chores</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a class="logo" href="child-home.html">ChoreBoard 🏠</a>
+      <div class="nav-links">
+        <span id="greeting" class="text-muted"></span>
+        <a href="#" id="logoutBtn">Logout</a>
+      </div>
+    </nav>
+
+    <h1 class="mb-2">My Chores 📋</h1>
+
+    <div id="spinner" class="spinner"></div>
+    <div id="choreList" class="grid-2 hidden"></div>
+    <p id="noChores" class="text-muted hidden">No chores assigned yet. Check back soon!</p>
+  </div>
+
+  <script type="module" src="js/child-home.js"></script>
+</body>
+</html>

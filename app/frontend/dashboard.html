@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChoreBoard – Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Nav -->
+    <nav>
+      <a class="logo" href="dashboard.html">ChoreBoard 🏠</a>
+      <div class="nav-links">
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="children.html">Children</a>
+        <a href="chores.html">Chores</a>
+        <a href="#" id="logoutBtn">Logout</a>
+      </div>
+    </nav>
+
+    <!-- Stats -->
+    <div id="statsRow" class="grid-2 mb-2">
+      <div class="card"><p class="text-muted">Total chores</p>  <p class="card-stat" id="statTotal">–</p></div>
+      <div class="card"><p class="text-muted">Pending approval</p> <p class="card-stat" id="statPending">–</p></div>
+      <div class="card"><p class="text-muted">Completed this week</p> <p class="card-stat" id="statWeek">–</p></div>
+    </div>
+
+    <!-- Children summary -->
+    <div class="card">
+      <h2>Children</h2>
+      <div id="spinner" class="spinner"></div>
+      <table id="childTable" class="hidden">
+        <thead>
+          <tr><th>Name</th><th>Active chores</th></tr>
+        </thead>
+        <tbody id="childBody"></tbody>
+      </table>
+      <p id="noChildren" class="text-muted hidden">No children added yet. <a href="children.html">Add one →</a></p>
+    </div>
+
+    <!-- Pending approvals -->
+    <div class="card mt-2">
+      <h2>Pending Approval</h2>
+      <div id="pendingSpinner" class="spinner"></div>
+      <table id="pendingTable" class="hidden">
+        <thead>
+          <tr><th>Chore</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="pendingBody"></tbody>
+      </table>
+      <p id="noPending" class="text-muted hidden">No chores waiting for approval.</p>
+    </div>
+  </div>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
