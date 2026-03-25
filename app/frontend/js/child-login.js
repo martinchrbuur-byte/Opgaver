@@ -4,16 +4,18 @@ requireGuest('child-home.html');
 
 const form      = document.getElementById('childLoginForm');
 const select    = document.getElementById('childSelect');
+const householdInput = document.getElementById('householdId');
 const errorMsg  = document.getElementById('errorMsg');
 const submitBtn = document.getElementById('submitBtn');
 
 // Populate child dropdown from the household stored in localStorage (set when parent logged in)
 async function populateChildren() {
-  const householdId = getHouseholdId();
+  const householdId = householdInput.value.trim() || getHouseholdId();
   if (!householdId) {
-    select.innerHTML = '<option value="">No household found – ask a parent to log in first</option>';
+    select.innerHTML = '<option value="">Enter household code first</option>';
     return;
   }
+  localStorage.setItem('householdId', householdId);
   try {
     const list = await children.listPublic(householdId);
     if (list.length === 0) {
@@ -26,6 +28,9 @@ async function populateChildren() {
     select.innerHTML = '<option value="">Could not load children</option>';
   }
 }
+
+householdInput.value = getHouseholdId() || '';
+householdInput.addEventListener('change', populateChildren);
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
