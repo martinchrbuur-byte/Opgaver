@@ -3,7 +3,13 @@
  * All frontend JS files import from this module.
  */
 
-const BASE_URL = 'http://localhost:4000';
+const LOCAL_API_BASE = 'http://localhost:4000';
+const REMOTE_API_FALLBACK = 'https://your-backend.onrender.com';
+
+const runtimeBaseUrl = window.APP_API_BASE_URL || localStorage.getItem('APP_API_BASE_URL');
+const isLocalFrontend = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
+const BASE_URL = runtimeBaseUrl || (isLocalFrontend ? LOCAL_API_BASE : REMOTE_API_FALLBACK);
 
 // ── Token helpers ─────────────────────────────────────────────────────────
 
@@ -36,6 +42,14 @@ export function getUser() {
 
 export function getHouseholdId() {
   return localStorage.getItem('householdId');
+}
+
+export function setApiBaseUrl(url) {
+  if (!url) {
+    localStorage.removeItem('APP_API_BASE_URL');
+    return;
+  }
+  localStorage.setItem('APP_API_BASE_URL', url);
 }
 
 export function isLoggedIn() {
@@ -103,7 +117,9 @@ export const auth = {
 // ── Children endpoints ────────────────────────────────────────────────────
 
 export const children = {
-  list: () => request('GET', '/api/children'),  listPublic: (householdId) => request('GET', `/api/children/public?householdId=${encodeURIComponent(householdId)}`, null, false),  create: (data) => request('POST', '/api/children', data),
+  list: () => request('GET', '/api/children'),
+  listPublic: (householdId) => request('GET', `/api/children/public?householdId=${encodeURIComponent(householdId)}`, null, false),
+  create: (data) => request('POST', '/api/children', data),
   update: (id, data) => request('PATCH', `/api/children/${id}`, data),
   archive: (id) => request('DELETE', `/api/children/${id}`),
 };

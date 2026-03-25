@@ -9,11 +9,17 @@ import dashboardRoutes from './routes/dashboard.routes.js';
 
 const app = express();
 
-// CORS – allow Live Server on both http://localhost:5500 and http://127.0.0.1:5500
+// CORS – allow Live Server + configured hosted frontend origins
+const envOrigins = (process.env.FRONTEND_ORIGIN || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 const allowedOrigins = [
-  process.env.FRONTEND_ORIGIN,
+  ...envOrigins,
   'http://localhost:5500',
   'http://127.0.0.1:5500',
+  'https://martinchrbuur-byte.github.io',
 ];
 
 app.use(
