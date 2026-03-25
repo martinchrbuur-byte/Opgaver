@@ -13,6 +13,10 @@ create table if not exists public.households (
   created_at timestamptz default now()
 );
 
+-- Ensure created_by exists if the table was created without it
+alter table public.households
+  add column if not exists created_by uuid references auth.users(id) on delete set null;
+
 -- 2) Parent profiles (maps auth user to household)
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
